@@ -10,7 +10,15 @@
 #import "PingBall.h"
 #import "PingPaddle.h"
 
-@interface PingView : ScreenSaverView
+@interface PingView : ScreenSaverView {
+    bool
+        Ukey,
+        Dkey,
+        Wkey,
+        Skey
+    ;
+    
+}
 
 @property PingBall* ball;
 @property PingPaddle* paddle1;

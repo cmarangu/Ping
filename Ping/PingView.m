@@ -16,6 +16,7 @@
     if (self) {
         [self setAnimationTimeInterval:1/30.0];
     }
+    Ukey = Dkey = Wkey = Skey = false;
     self.ball = [PingBall allocNewBallOnTable:frame];
     self.paddle1 = [PingPaddle allocNewPaddleInTable:frame onSide:LEFT];
     self.paddle2 = [PingPaddle allocNewPaddleInTable:frame onSide:RIGHT];
@@ -50,6 +51,26 @@
         self.ball.velocity = [PingBall makePingServeWithDirection:(self.ball.velocity.angle + 180) * -1
                                                         magnitude:self.ball.velocity.speed * 1.5];
     }
+    if (Wkey) {
+        [self.paddle1 moveUpOrDown:UP];
+        [self.paddle1 moveUpOrDown:UP];
+        [self.paddle1 moveUpOrDown:UP];
+    }
+    if (Skey) {
+        [self.paddle1 moveUpOrDown:DOWN];
+        [self.paddle1 moveUpOrDown:DOWN];
+        [self.paddle1 moveUpOrDown:DOWN];
+    }
+    if (Ukey) {
+        [self.paddle2 moveUpOrDown:UP];
+        [self.paddle2 moveUpOrDown:UP];
+        [self.paddle2 moveUpOrDown:UP];
+    }
+    if (Dkey) {
+        [self.paddle2 moveUpOrDown:DOWN];
+        [self.paddle2 moveUpOrDown:DOWN];
+        [self.paddle2 moveUpOrDown:DOWN];
+    }
     [self.ball move];
     [self.ball draw];
     [self.paddle1 draw];
@@ -59,28 +80,31 @@
 - (void)keyDown:(NSEvent *)theEvent
 {
     if ([[theEvent characters] isEqualToString:@"w"]) {
-        [self.paddle1 moveUpOrDown:UP];
-        [self.paddle1 moveUpOrDown:UP];
-        [self.paddle1 moveUpOrDown:UP];
+        Wkey = true;
     } else if ([[theEvent characters] isEqualToString:@"s"]) {
-        [self.paddle1 moveUpOrDown:DOWN];
-        [self.paddle1 moveUpOrDown:DOWN];
-        [self.paddle1 moveUpOrDown:DOWN];
+        Skey = true;
     }
     if (theEvent.keyCode == 126) {
-        [self.paddle2 moveUpOrDown:UP];
-        [self.paddle2 moveUpOrDown:UP];
-        [self.paddle2 moveUpOrDown:UP];
+        Ukey = true;
     } else if (theEvent.keyCode == 125) {
-        [self.paddle2 moveUpOrDown:DOWN];
-        [self.paddle2 moveUpOrDown:DOWN];
-        [self.paddle2 moveUpOrDown:DOWN];
+        Dkey = true;
     }
 }
 
 - (void)keyUp:(NSEvent *)theEvent
 {
-    
+    if ([[theEvent characters] isEqualToString:@"w"]) {
+        Wkey = false;
+    }
+    if ([[theEvent characters] isEqualToString:@"s"]) {
+        Skey = false;
+    }
+    if (theEvent.keyCode == 126) {
+        Ukey = false;
+    }
+    if (theEvent.keyCode == 125) {
+        Dkey = false;
+    }
 }
 
 - (void)animateOneFrame
@@ -90,12 +114,11 @@
 
 - (BOOL)hasConfigureSheet
 {
-    return NO;
+    return YES;
 }
 
 - (NSWindow*)configureSheet
 {
-//    NSWindow* pingConfigureSheet = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllSpaces];
     return nil;
 }
 
