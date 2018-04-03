@@ -23,7 +23,8 @@
     py = ty + th / 2 - ph / 2;
     PingPaddle *pingPaddle = [PingPaddle alloc];
     pingPaddle.side = pingSide;
-    pingPaddle.speed = 3;
+    pingPaddle.autopiolot = false;
+    pingPaddle.speed = 6;
     pingPaddle.rect = CGRectMake(px, py, pw, ph);
     return pingPaddle;
 }

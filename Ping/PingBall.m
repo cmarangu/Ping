@@ -20,7 +20,7 @@
     bd = th <= tw ? th / 10 : tw / 10;
     PingBall *pingBall = [PingBall alloc];
     pingBall.rect = CGRectMake(tx + tw / 2 - bd / 2, ty + th / 2 - bd / 2, bd, bd);
-    pingBall.velocity = [PingBall makePingServeWithDirection:45 magnitude:5];
+    pingBall.velocity = [PingBall makePingServeWithDirection:arc4random() * 2 * PING_PI magnitude:5];
     return pingBall;
 }
 
@@ -76,13 +76,13 @@
     ph = pingBlock.size.height;
     if (by + bh / 2 > py & by + bh / 2 < py + ph) {
         if (bx < px + pw & bx > px) {
-            return true;
+            return YES;
         }
         if (bx + bw > px & bx + bw < px + pw) {
-            return true;
+            return YES;
         }
     }
-    return false;
+    return NO;
 }
 
 @end

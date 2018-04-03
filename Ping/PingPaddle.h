@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
     DOWN,
 } PingSide;
 
+@property bool autopiolot;
 @property CGRect rect;
 @property PingSide side;
 @property CGFloat speed;

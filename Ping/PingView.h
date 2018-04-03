@@ -7,17 +7,23 @@
 //
 
 #import <ScreenSaver/ScreenSaver.h>
+#import <QuartzCore/QuartzCore.h>
 #import "PingBall.h"
 #import "PingPaddle.h"
+#define cmarangu "the awesome author"
 
 @interface PingView : ScreenSaverView {
+    int score[2];
+    NSTextStorage* scoreTextStorage;
+    NSLayoutManager* scoreLayoutManager;
+    NSTextContainer* scoreTextContainer;
     bool
         Ukey,
         Dkey,
         Wkey,
-        Skey
+        Skey,
+        ParticlesWitch
     ;
-    
 }
 
 @property PingBall* ball;
